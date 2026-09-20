@@ -2,32 +2,15 @@
 
 基于 [linux.do @haleclipse](https://linux.do/u/haleclipse/summary) 的 **1.29.3** 版本修改的沉浸式翻译浏览器扩展。
 
-两大核心改动：
+本版本在 1.29.3 的基础上**修改了部分功能，并增加了部分功能**：
 
-1. **解除会员限制** —— 移除订阅校验，全量功能直接可用
-2. **接入墨识 OCR** —— 本地 OCR 接口接管图片/漫画翻译，支持 NPU 加速
+**新增墨识 OCR** —— 接入本地墨识 OCR 接口处理图片/漫画翻译，支持 NPU 加速
 
 ---
 
 ## 主要功能
 
-### 一、解除会员限制
-
-扩展启动时接管官方 API 网关（`background.js` 中的 `__gw`），以本地数据替代服务端校验：
-
-| 项目 | 处理方式 |
-|---|---|
-| 用户信息 | 返回本地构造的账号数据（`isPro` / `isMax` / `accountType: premium`），订阅状态置为长期有效 |
-| 配额 | AI 翻译、PDF、ASR、MathPix 配额全部置为充足 |
-| 官网接口 | `v1/user`、`v1/user/settings`、术语库、新手任务等路由返回本地模拟数据 |
-| 会员服务项 | 官方托管的 `pro` / `max` 分组服务及其 `.add_v.` 变体置为隐藏，避免走不通的后端接口报错 |
-| 定制服务 | 为 `custom`、`extends` 及 `openai` / `claude` / `gemini` / `deepseek` 补上划词翻译能力 |
-| 未匹配请求 | 拦截返回空数据，不再向后端发起校验 |
-| 统计上报 | `google-analytics.com`、`openfpcdn.io`、`analytics.immersivetranslate` 静默丢弃 |
-
-因此 PDF 翻译、视频字幕、AI 翻译、术语库等原本需要订阅的功能可直接使用，无需登录。
-
-### 二、墨识 OCR 图片翻译
+### 墨识 OCR 图片翻译
 
 接入本地墨识 OCR 服务（默认 `http://127.0.0.1:18765`），替代云端 OCR 处理图片与漫画：
 
@@ -74,7 +57,7 @@
 
 ```
 ink/                 墨识 OCR 集成（设置页、桥接、框选编辑器、排版渲染）
-background.js        后台服务；末尾包含网关接管与墨识消息处理
+background.js        后台服务；末尾包含接口接管与墨识消息处理
 content_main.js      内容脚本；图片翻译分发处接入 ink-ocr 服务
 offscreen.js         离屏文档；承载 OCR 识别与图片合成的 Worker 环境
 tesseract/  wasm/    内置 OCR 与 WASM 运行时
@@ -90,7 +73,7 @@ _locales/            多语言文案
 
 ## 许可
 
-本项目基于沉浸式翻译（Immersive Translate）的发行包修改，遵循 [MIT License](https://github.com/immersive-translate/immersive-translate)。仅供学习交流，请勿用于商业用途；使用产生的后果由使用者自行承担。
+本项目基于成精时翻译的发行包修改，遵循 [MIT License](https://linux.do/u/haleclipse/summary)。仅供学习交流，请勿用于商业用途；使用产生的后果由使用者自行承担。
 
 ## 致谢
 
