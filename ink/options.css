@@ -1,0 +1,22 @@
+ink-ocr-settings{display:block;margin:0 0 32px;color:var(--color,#415462);font-size:14px;line-height:1.6}
+ink-ocr-settings .ink-panel{padding:24px;border:1px solid var(--muted-border-color,#dce3e8);border-radius:12px;background:var(--card-background-color,#fff)}
+ink-ocr-settings h2{margin:0 0 20px;font-size:20px;line-height:1.5}
+ink-ocr-settings form,ink-ocr-settings fieldset{margin:0;padding:0;border:0}
+ink-ocr-settings label{display:block;margin:0 0 8px;font-size:14px;font-weight:600}
+ink-ocr-settings input:not([type=checkbox]),ink-ocr-settings select{box-sizing:border-box;width:100%;height:44px;margin:0 0 8px;padding:8px 12px;font-size:14px;border-radius:6px}
+ink-ocr-settings select{padding-right:36px}
+ink-ocr-settings .ink-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+ink-ocr-settings .ink-help{font-size:13px;line-height:1.7;color:var(--muted-color,#6b7785);margin:0 0 12px;overflow-wrap:anywhere}
+ink-ocr-settings .ink-check{display:flex;align-items:center;gap:10px;margin:20px 0 8px}
+ink-ocr-settings .ink-check input{margin:0;flex-shrink:0}
+ink-ocr-settings .ink-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:20px}
+ink-ocr-settings .ink-actions button{width:auto;margin:0;padding:9px 14px;border-radius:6px;font-size:14px;line-height:1.5}
+ink-ocr-settings .ink-secondary{background:transparent;color:var(--primary,#dd3a6e);border-color:var(--primary,#dd3a6e)}
+ink-ocr-settings .ink-actions a{margin-left:auto;font-size:14px}
+ink-ocr-settings #ink-status{margin:16px 0 12px;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+ink-ocr-settings #ink-status:empty{display:none}
+ink-ocr-settings .ink-error{color:#c43348}
+ink-ocr-settings .ink-connection-help{margin:18px 0 0;padding:0;border:0;font-size:13px}
+ink-ocr-settings .ink-connection-help summary{color:var(--muted-color,#6b7785);font-size:13px}
+ink-ocr-settings .ink-connection-help .ink-help{margin:10px 0 0}
+@media(max-width:600px){ink-ocr-settings .ink-panel{padding:16px}ink-ocr-settings .ink-grid{grid-template-columns:1fr;gap:8px}ink-ocr-settings .ink-actions a{margin-left:0}}

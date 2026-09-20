@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>墨识 OCR · 浏览器接口</title>
+<link rel="stylesheet" href="settings.css"><script type="module" src="settings.js"></script></head>
+<body><main>
+<a href="../options.html#manga">← 返回漫画/图片设置</a>
+<h1>墨识 OCR</h1>
+<form id="settings">
+<label>接口地址<input id="baseUrl" required value="http://127.0.0.1:18765"></label>
+<label>API 密钥<input id="token" type="password" required autocomplete="off"><small>在墨识软件「设置 → 接口」中复制。</small></label>
+<label>识别引擎<select id="mode">
+<option value="balanced">均衡 · NPU 检测＋CPU RepSVTR 识别</option>
+<option value="npu">NPU 优先 · 已审计算子分配</option>
+<option value="accurate">多视图校对 · NPU，耗时较长</option>
+<option value="wechat">微信 OCR · 计算设备未核验</option>
+<option value="manga">Manga OCR · 日文漫画</option>
+</select></label>
+<p id="model-detail" class="hint"></p>
+<label class="check"><input type="checkbox" id="translateWithInk">图片翻译使用墨识已配置的 AI 翻译服务</label>
+<small>取消勾选后使用插件自身的翻译服务。翻译只提交识别文字；识别失败时不会切换到其他 OCR 服务。</small>
+<div class="actions"><button type="submit">保存设置</button><button type="button" id="check">检查连接</button></div>
+</form><p id="status" role="status" aria-live="polite"></p>
+<h2>测试图片</h2><p>上传一张图片检查真实识别结果。也可在网页图片上使用原来的“翻译图片”。</p>
+<input type="file" id="image" accept="image/png,image/jpeg,image/webp,image/bmp,image/tiff">
+<button id="cancel" disabled>取消识别</button>
+<p id="progress" role="status" aria-live="polite"></p>
+<canvas id="preview" hidden></canvas><pre id="result"></pre>
+<p class="hint">启动服务：在 D:\NPU 运行 scripts/start-browser-api.ps1 -Background。NPU 首次编译期间会持续显示进度；模型缺失、鉴权、服务未启动等错误会明确显示。</p>
+</main></body></html>
