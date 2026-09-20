@@ -94,5 +94,4 @@ _locales/            多语言文案
 
 ## 致谢
 
-- [沉浸式翻译](https://immersivetranslate.com/) —— 上游项目
 - [linux.do @haleclipse](https://linux.do/u/haleclipse/summary) —— 1.29.3 修改版本作者
