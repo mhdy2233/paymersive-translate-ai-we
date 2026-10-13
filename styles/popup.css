@@ -1,3 +1,5 @@
+:root,
+body,
 [data-theme="light"],
 #mount:not([data-theme="dark"]) {
   --popup-footer-background-color: #e8eaeb;
@@ -19,6 +21,8 @@
   --error-link: #ea4c89;
 }
 
+:root[data-theme="dark"],
+body[data-theme="dark"],
 [data-theme="dark"] {
   --popup-footer-background-color: #0d0d0d;
   --popup-content-background-color: #191919;
@@ -48,6 +52,7 @@ body {
   margin: 0 auto;
   min-width: 268px;
   border-radius: 10px;
+  background-color: var(--popup-footer-background-color, #e8eaeb);
 }
 
 .popup-container {
@@ -1730,4 +1735,534 @@ select.min-select-no-arrow {
 .ad-banner-container {
   margin-top: 16px;
   margin-bottom: 20px;
+}
+
+/* 精简弹出面板：隐藏翻译按钮、快捷操作与底部栏 */
+.translate-mode,
+.popup-content #translate-button,
+.popup-content .main-button,
+.popup-content > .flex.flex-row.mt-3.items-center {
+  display: none !important;
+}
+
+.widgets-header,
+.widgets-container {
+  display: none !important;
+}
+
+.popup-footer {
+  display: none !important;
+}
+
+.ad-banner-container,
+.trial-pro-container {
+  display: none !important;
+}
+
+.popup-content > .text-gray-9.mt-4 {
+  display: none !important;
+}
+
+/* 优化精简后的卡片整体圆角与背景 */
+.popup-container {
+  background-color: var(--popup-content-background-color) !important;
+  border-radius: 12px !important;
+}
+
+.popup-content {
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+}
+
+/* 隐藏顶部"已登录/未登录"栏与"下载手机APP" */
+.download-app,
+.popup-content > .flex.items-center.justify-between,
+.popup-content a:has(.text-label) {
+  display: none !important;
+}
+
+/* 顶部栏隐藏后，重置语言选择行的顶部外边距 */
+.popup-content > .translate-language-row {
+  margin-top: 0 !important;
+}
+
+/* ========== 网页翻译设置手风琴折叠栏 ========== */
+.imt-accordion-header {
+  width: 316px;
+  min-width: 316px;
+  height: 44px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--popup-content-background-color, #ffffff);
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-radius 0.2s ease;
+}
+
+.imt-accordion-header:hover {
+  background-color: var(--popup-item-hover-background-color, #eaeced);
+}
+
+.imt-accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.imt-accordion-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-gray-6, #666666);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .imt-accordion-icon {
+  color: #b3b3b3;
+}
+
+.imt-accordion-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-black-2, #222222);
+}
+
+[data-theme="dark"] .imt-accordion-title {
+  color: #e0e0e0;
+}
+
+.imt-accordion-chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--text-gray-6, #999999);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+/* 折叠状态（默认极简） */
+body.accordion-closed #mount {
+  display: none !important;
+}
+
+body.accordion-closed .imt-accordion-chevron {
+  transform: rotate(-90deg);
+}
+
+/* 展开状态 */
+body.accordion-open .imt-accordion-header {
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid var(--popup-item-background-color, #f0f0f0);
+}
+
+body.accordion-open .imt-accordion-chevron {
+  transform: rotate(0deg);
+}
+
+body.accordion-open .popup-container {
+  border-radius: 0 0 12px 12px !important;
+}
+
+/* ========== 快捷文本翻译区域样式 ========== */
+.imt-quick-card {
+  width: 316px;
+  min-width: 316px;
+  margin: 10px auto 14px auto;
+  padding: 16px 20px;
+  background-color: var(--popup-content-background-color, #ffffff);
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.imt-quick-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imt-quick-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-black-2, #222222);
+}
+
+[data-theme="dark"] .imt-quick-title {
+  color: #e0e0e0;
+}
+
+.imt-quick-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--primary, #e23c7c);
+  flex-shrink: 0;
+}
+
+/* ========== 语言选择组件样式对齐（显式灰底胶囊） ========== */
+.imt-quick-card .translate-language-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+.imt-quick-select-wrap {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  position: relative !important;
+}
+
+.imt-quick-card .select-languages-box {
+  background-color: #f3f5f6 !important;
+  background-color: var(--translate-language-background-color, #f3f5f6) !important;
+  border-radius: 12px !important;
+  height: 44px !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.imt-quick-card .select-languages-box:hover {
+  background-color: #eaeced !important;
+  background-color: var(--popup-item-hover-background-color, #eaeced) !important;
+}
+
+[data-theme="dark"] .imt-quick-card .select-languages-box {
+  background-color: #272727 !important;
+  background-color: var(--translate-language-background-color, #272727) !important;
+}
+
+[data-theme="dark"] .imt-quick-card .select-languages-box:hover {
+  background-color: #333333 !important;
+  background-color: var(--popup-item-hover-background-color, #333333) !important;
+}
+
+.imt-quick-card .select-languages-text {
+  flex: 1 1 auto !important;
+  color: #222222 !important;
+  color: var(--translate-language-text-color, #222222) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+}
+
+[data-theme="dark"] .imt-quick-card .select-languages-text {
+  color: #e0e0e0 !important;
+  color: var(--translate-language-text-color, #e0e0e0) !important;
+}
+
+.imt-quick-card .arrow-down {
+  color: #999999 !important;
+  color: var(--text-gray-6, #999999) !important;
+  margin-left: 6px !important;
+  flex-shrink: 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+[data-theme="dark"] .imt-quick-card .arrow-down {
+  color: #707070 !important;
+}
+
+.imt-quick-overlay-select {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* 中间语言交换按钮：带灰底胶囊 */
+.imt-quick-card .translate-language-exchange {
+  width: 36px !important;
+  height: 44px !important;
+  background-color: #f3f5f6 !important;
+  background-color: var(--translate-language-background-color, #f3f5f6) !important;
+  border-radius: 12px !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #666666 !important;
+  color: var(--translate-language-icon-color, #666666) !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.imt-quick-card .translate-language-exchange:hover {
+  color: #e95d93 !important;
+  color: var(--translate-language-hover-icon-color, #e95d93) !important;
+  background-color: #fdedf3 !important;
+  background-color: var(--translate-language-hover-background-color, #fdedf3) !important;
+}
+
+[data-theme="dark"] .imt-quick-card .translate-language-exchange {
+  background-color: #272727 !important;
+  background-color: var(--translate-language-background-color, #272727) !important;
+  color: #b3b3b3 !important;
+  color: var(--translate-language-icon-color, #b3b3b3) !important;
+}
+
+/* ========== 翻译服务行样式对齐（灰底圆角卡片） ========== */
+.imt-quick-card .translation-service-container {
+  background-color: #f3f5f6 !important;
+  background-color: var(--popup-item-background-color, #f3f5f6) !important;
+  border-radius: 12px !important;
+  margin-top: 2px !important;
+  overflow: hidden !important;
+}
+
+[data-theme="dark"] .imt-quick-card .translation-service-container {
+  background-color: #272727 !important;
+  background-color: var(--popup-item-background-color, #272727) !important;
+}
+
+.imt-quick-card .min-select-container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  height: 44px !important;
+  background-color: transparent !important;
+  padding: 0 16px !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+}
+
+.imt-quick-card .min-select-container label {
+  font-size: 13px !important;
+  color: #666666 !important;
+  color: var(--text-gray-6, #666666) !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  user-select: none !important;
+}
+
+[data-theme="dark"] .imt-quick-card .min-select-container label {
+  color: #999999 !important;
+}
+
+.imt-quick-service-select-wrap {
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  min-width: 0 !important;
+}
+
+.imt-quick-service-select-wrap select.translate-service {
+  direction: ltr !important;
+  text-align: right !important;
+  text-align-last: right !important;
+  background-color: transparent !important;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIG9wYWNpdHk9IjAuOCI+PHBhdGggZD0iTTMuNDc5NzMgNi4zODY0M0wwLjcyOTI5NyAzLjMyMjE2QzAuNjE2ODggMy4xOTY5NCAwLjU1NDY5NSAzLjAzNDU5IDAuNTU0Njg4IDIuODY2M0MwLjU1NDY4OCAyLjQ4OTI0IDAuODYwNTQ3IDIuMTgzNTkgMS4yMzc4NCAyLjE4MzU5SDYuNzM4NzFDNi45MDcwNyAyLjE4MzU4IDcuMDY5NTEgMi4yNDU3MiA3LjE5NDg4IDIuMzU4MDlDNy40NzU3NCAyLjYwOTg2IDcuNDk5MTkgMy4wNDE0OCA3LjI0NzI2IDMuMzIyMTZMNC40OTY4MiA2LjM4NjQ0QzQuNDgwMzIgNi40MDQ4MiA0LjQ2MjgzIDYuNDIyMjkgNC40NDQ0NCA2LjQzODc4QzQuMTYzNTggNi42OTA1NSAzLjczMTY2IDYuNjY3MTEgMy40Nzk3MyA2LjM4NjQzWiIgZmlsbD0iIzk5OTk5OSIvPjwvZz48L3N2Zz4K") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 2px center !important;
+  background-size: 8px auto !important;
+  padding-right: 18px !important;
+  padding-left: 0 !important;
+  border: none !important;
+  color: #222222 !important;
+  color: var(--text-black-2, #222222) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 190px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+[data-theme="dark"] .imt-quick-service-select-wrap select.translate-service {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .imt-quick-service-select-wrap select.translate-service option {
+  background-color: #272727 !important;
+  color: #e0e0e0 !important;
+}
+.imt-quick-input-wrap {
+  width: 100%;
+}
+
+.imt-quick-textarea {
+  width: 100%;
+  min-height: 60px;
+  max-height: 180px;
+  padding: 8px 10px;
+  background-color: var(--popup-item-background-color, #f3f5f6);
+  color: var(--text-black-2, #222222);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.imt-quick-textarea:focus {
+  border-color: var(--primary, #e23c7c);
+}
+
+[data-theme="dark"] .imt-quick-textarea {
+  background-color: var(--popup-item-background-color, #272727);
+  color: #e0e0e0;
+}
+
+.imt-quick-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.imt-quick-btn-secondary {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  color: var(--text-gray-6, #666666);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.imt-quick-btn-secondary:hover {
+  background-color: var(--popup-item-hover-background-color, #eaeced);
+}
+
+[data-theme="dark"] .imt-quick-btn-secondary {
+  color: #999999;
+}
+
+.imt-quick-submit-btn {
+  height: 38px !important;
+  line-height: 38px !important;
+  padding: 0 20px !important;
+  font-size: 14px !important;
+  border-radius: 10px !important;
+  background-color: var(--primary, #e23c7c) !important;
+  color: #ffffff !important;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.imt-quick-submit-btn:hover {
+  opacity: 0.9;
+}
+
+.imt-quick-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.imt-quick-result-wrap {
+  margin-top: 2px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--popup-item-hover-background-color, #eef0f2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.imt-quick-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imt-quick-result-label {
+  font-size: 12px;
+  color: var(--text-gray-6, #999999);
+}
+
+.imt-quick-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 12px;
+  color: var(--text-gray-6, #666666);
+  background-color: var(--popup-item-background-color, #f3f5f6);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.imt-quick-copy-btn:hover {
+  background-color: var(--popup-item-hover-background-color, #eaeced);
+  color: var(--primary, #e23c7c);
+}
+
+[data-theme="dark"] .imt-quick-copy-btn {
+  background-color: var(--popup-item-background-color, #272727);
+  color: #b3b3b3;
+}
+
+.imt-quick-copy-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.imt-quick-result-content {
+  padding: 8px 10px;
+  background-color: var(--popup-item-background-color, #f3f5f6);
+  color: var(--text-black-2, #222222);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: text;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.imt-quick-result-content.imt-loading {
+  color: var(--text-gray-6, #999999);
+  font-style: italic;
+}
+
+[data-theme="dark"] .imt-quick-result-content {
+  background-color: var(--popup-item-background-color, #272727);
+  color: #e0e0e0;
 }
